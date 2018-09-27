@@ -1,6 +1,13 @@
 categories = %w(entree desert apettizer snack)
 
-50.times do
+User.create({
+    name: "Leonardo Lopes",
+    email: "test@test.com",
+    password: "password",
+    password_confirmation: "password",
+})
+
+10.times do
   Recipe.create({
       title: Faker::Food.dish,
       category: categories[rand(3)],
@@ -8,6 +15,7 @@ categories = %w(entree desert apettizer snack)
       oven_time: Faker::Number.decimal,
       ingredients: Faker::Lorem.sentence,
       steps: Faker::Lorem.sentence,
-      image: ""
+      image: "",
+      user_id: 1
   })
 end
