@@ -13,14 +13,14 @@
 ActiveRecord::Schema.define(version: 2018_09_27_035129) do
 
   create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "title"
-    t.string "category"
-    t.float "preparation_time"
-    t.float "oven_time"
-    t.text "ingredients"
-    t.text "steps"
+    t.string "title", null: false
+    t.integer "category", null: false
+    t.float "preparation_time", null: false
+    t.float "oven_time", null: false
+    t.text "ingredients", null: false
+    t.text "steps", null: false
     t.string "image"
-    t.bigint "user_id"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_recipes_on_user_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2018_09_27_035129) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "recipes", "users"

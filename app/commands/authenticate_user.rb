@@ -8,7 +8,10 @@ class AuthenticateUser
 
   def call
     user = User.find_by_email(@email)
-    user = user.authenticate(@password)
-    JsonWebToken.encode(user_id: user.id)
+    if user && user.authenticate(@password)
+      return JsonWebToken.encode(user_id: user.id)
+    end
+    errors.add :user_authentication, ''
+    false
   end
 end
