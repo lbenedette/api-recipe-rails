@@ -1,30 +1,32 @@
 <template>
-    <div class="column is-4 is-offset-4">
-        <div class="box">
-            <h1 class="title has-text-centered">
-                Login
-            </h1>
+  <div class="column is-4 is-offset-4">
+    <div class="box">
+      <h1 class="title has-text-centered">
+        Recipes
+      </h1>
 
-            <b-field label="Email">
-                <b-input type="email"
-                         v-model="email">
-                </b-input>
-            </b-field>
+      <b-field label="Email">
+        <b-input
+          type="email"
+          v-model="email">
+        </b-input>
+      </b-field>
 
-            <b-field label="Password">
-                <b-input type="password"
-                         v-model="password"
-                         password-reveal>
-                </b-input>
-            </b-field>
+      <b-field label="Password">
+        <b-input
+          type="password"
+          v-model="password"
+          password-reveal>
+        </b-input>
+      </b-field>
 
-            <b-field>
-                <div class="control">
-                    <button class="button is-primary" @click="authenticate">Login</button>
-                </div>
-            </b-field>
+      <b-field>
+        <div class="control has-text-centered">
+          <button class="button is-success is-fullwidth" @click="authenticate">Login</button>
         </div>
+      </b-field>
     </div>
+  </div>
 </template>
 
 <script>
