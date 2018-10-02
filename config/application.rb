@@ -19,6 +19,14 @@ Bundler.require(*Rails.groups)
 
 module TestTechFit
   class Application < Rails::Application
+    # Access-Control-Allow-Origin
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        # Not security
+        origins '*'
+        resource '*', :headers => :any, :methods => :any
+      end
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 

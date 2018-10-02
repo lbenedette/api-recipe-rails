@@ -3,12 +3,12 @@ module Api
     class RecipesController < ApplicationController
       def index
         recipes = Recipe.order('created_at DESC')
-        render json: {data: recipes}, status: :ok
+        render json: recipes, status: :ok
       end
 
       def show
         recipe = Recipe.find(params[:id])
-        render json: {data: recipe}, status: :ok
+        render json: recipe, status: :ok
       end
 
       def create
@@ -16,7 +16,7 @@ module Api
         # current user is the creator of the recipe
         recipe.user_id = current_user.id
         if recipe.save
-          render json: {data: recipe}, status: :ok
+          render json: recipe, status: :ok
         else
           render json: {errors: recipe.errors}, status: :unprocessable_entity
         end
@@ -25,7 +25,7 @@ module Api
       def update
         recipe = Recipe.find(params[:id])
         if recipe.update_attributes(recipe_params)
-          render json: {data: recipe}, status: :ok
+          render json: recipe, status: :ok
         else
           render json: {errors: recipe.errors}, status: :unprocessable_entity
         end

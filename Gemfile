@@ -33,7 +33,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # JWT Encoding and Decoding
 gem 'jwt'
-
+# Rack-cors is Rack middleware for handling Cross-Origin Resource Sharing (CORS), which makes cross-origin AJAX possible.
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
