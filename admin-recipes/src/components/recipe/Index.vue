@@ -13,18 +13,28 @@
     <div class="columns" v-for="recipe in recipes" :key="recipe.id">
       <div class="column is-8 is-offset-2">
         <div class="box">
-          <p class="title is-4">
-            <router-link :to="{name: 'show', params: {id: recipe.id}}">
+          <p class="title is-4 has-text-centered">
+            <router-link :to="{name: 'show', params: {id: recipe.id}}" class="has-text-weight-semibold">
               {{ recipe.title }}
             </router-link>
-            &nbsp; 
-            <b-tag type="is-success" size="is-medium">{{ recipe.category }}</b-tag>
+            <b-tag
+              type="is-info"
+              size="is-medium">
+                {{ recipe.category }}
+            </b-tag>
           </p>
-          <p class="subtitle is-5">Created by: {{ recipe.user_id }}</p>
+
+          <p class="subtitle is-6">
+            Created by
+            <a>
+              {{ recipe.user_name }}
+            </a>
+            {{ recipe.created_at | moment("from") }}.
+          </p>
+
           <figure>
             <img :src="recipe.image" :alt="recipe.title">
           </figure>
-          <p>Posted in {{ recipe.created_at }}</p>
         </div>
       </div>
     </div>

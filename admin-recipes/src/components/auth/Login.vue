@@ -20,11 +20,9 @@
         </b-input>
       </b-field>
 
-      <b-field>
-        <div class="control has-text-centered">
-          <button class="button is-success is-fullwidth" @click="authenticate">Login</button>
-        </div>
-      </b-field>
+      <div class="control has-text-centered">
+        <button class="button is-success is-fullwidth" @click="authenticate">Login</button>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +42,7 @@ export default {
         })
         .then(response => {
           this.$store.commit("setToken", response.data.auth_token);
+          this.$store.commit("setUser", response.data.user);
           this.$router.push('/recipes');
         })
         .catch(e => (e));
