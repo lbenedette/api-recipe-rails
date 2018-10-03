@@ -2,12 +2,19 @@ module Api
   module V1
     class RecipesController < ApplicationController
       def index
-        recipes = Recipe.order('created_at DESC')
+        # ideia 1: Add pagination
+        # ideia 2: Add filter by category
+        recipes = Recipe.select('recipes.*, users.name as user_name')
+          .joins(:user)
+          .order('recipes.created_at DESC')
         render json: recipes, status: :ok
       end
 
       def show
-        recipe = Recipe.find(params[:id])
+        recipe = Recipe.select('recipes.*, users.name as user_name')
+          .joins(:user)
+          .where('recipes.id = ' + params[:id])
+          .first()
         render json: recipe, status: :ok
       end
 
