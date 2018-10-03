@@ -2,11 +2,12 @@
   <div>
     <div class="columns">
       <div class="column">
-        <div class="control has-text-centered">
-          <router-link to="/recipes/new" class="button is-success">
-            Create Recipe
-          </router-link>
-        </div>
+          <p class="has-text-centered title is-3">
+            {{ user.name }}
+          </p>
+          <p class="has-text-centered subtitle is-5">
+            {{ user.email }}
+          </p>
       </div>
     </div>
 
@@ -24,17 +25,14 @@
             </b-tag>
           </p>
 
-          <p class="subtitle is-6">
-            Created by
-            <router-link :to="{name: 'profile', params: {id: recipe.user_id}}">
-              {{ recipe.user_name }}
-            </router-link>
-            {{ recipe.created_at | moment("from") }}.
-          </p>
-
           <figure>
             <img :src="recipe.image" :alt="recipe.title">
           </figure>
+          <hr>
+
+          <div>
+            Posted at {{ recipe.created_at | moment("MMMM Do YYYY h:mm:ss") }}
+          </div>
         </div>
       </div>
     </div>
@@ -45,21 +43,23 @@
 import axios from "axios";
 
 export default {
-  name: "index",
+  name: "profile",
 
   data() {
     return {
-      recipes: []
+      recipes: [],
+      user: {}
     };
   },
 
   created() {
     axios
-      .get("http://localhost:3000/api/v1/recipes", {
+      .get('http://localhost:3000/api/v1/users/' + this.$route.params.id, {
         headers: { Authorization: this.$store.getters.getToken }
       })
       .then(response => {
-        this.recipes = response.data;
+        this.recipes = response.data.recipes;
+        this.user = response.data.user;
       })
       .catch(e => e);
   }

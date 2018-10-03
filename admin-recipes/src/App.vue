@@ -11,26 +11,26 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div v-if="isAuthenticated" class="buttons">
-              <a v-text="userName" class="button is-text">
-              </a>
-              <a class="button is-outlined">
+              <router-link :to="{name: 'profile', params: {id: userId}}" v-text="userName" class="button is-text">
+              </router-link>
+              <button class="button is-outlined" @click="logout">
                 Log out
-              </a>
+              </button>
             </div>
 
             <div v-else class="buttons">
-              <a class="button is-success">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-outlined">
+              <router-link to="/register" class="button is-success">
+                Sign up
+              </router-link>
+              <router-link to="/login" class="button is-outlined">
                 Log in
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
     </nav>
-  
+
     <section class="hero">
       <div class="hero-body">
         <div class="container">
@@ -45,9 +45,20 @@
 export default {
   name: 'app',
 
+  methods: {
+    logout() {
+      this.$store.commit('logout')
+      this.$router.push('/login')
+    }
+  },
+
   computed: {
     isAuthenticated() {
       return this.$store.getters.isAuthenticated;
+    },
+
+    userId() {
+      return this.$store.getters.getUserId;
     },
 
     userName() {

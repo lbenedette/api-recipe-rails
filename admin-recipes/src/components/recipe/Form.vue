@@ -18,13 +18,13 @@
           v-model="recipe.category">
             <option
                 v-for="option in [
-                  {category: 'entree', id: 0},
-                  {category: 'desert', id: 1},
-                  {category: 'apettizer', id: 2},
-                  {category: 'snack', id: 3},
+                  {category: 'entree'},
+                  {category: 'desert'},
+                  {category: 'apettizer'},
+                  {category: 'snack'},
                 ]"
-                :value="option.id"
-                :key="option.id">
+                :value="option.category"
+                :key="option.category">
                 {{ option.category }}
             </option>
         </select>
@@ -87,7 +87,7 @@
 
       <div class="column">
         <div class="control has-text-right">
-          <button class="button is-info" @click="submit">Create</button>
+          <button class="button is-info" @click="submit">Confirm</button>
         </div>
       </div>
     </div>

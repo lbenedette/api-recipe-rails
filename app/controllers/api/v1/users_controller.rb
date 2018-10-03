@@ -6,7 +6,7 @@ module Api
       def show
         user = User.find(params[:id])
         data = {:user => user, :recipes => user.recipes}
-        render json: {data: data}, status: :ok
+        render json: data, status: :ok
       end
 
       def create

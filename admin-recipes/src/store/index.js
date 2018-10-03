@@ -5,13 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    auth_token: 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1Mzg2MzU3Mzh9.pSd2JuBw5gc70aD5ZiBGvebzKzk8kLlsgzpQin_cRHc',
+    auth_token: '',
     user: {}
   },
 
   mutations: {
     setToken(state, token) {
       state.auth_token = token;
+    },
+
+    logout(state) {
+      state.auth_token = '';
+      state.user = {};
     },
 
     setUser(state, user) {
@@ -26,6 +31,10 @@ export default new Vuex.Store({
 
     isAuthenticated(state) {
       return !!state.auth_token;
+    },
+
+    getUserId(state) {
+      return state.user.id;
     },
 
     getUserName(state) {

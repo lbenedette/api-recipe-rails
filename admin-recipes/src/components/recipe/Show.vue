@@ -1,6 +1,6 @@
 <template>
   <div class="columns">
-    <div class="column is-8 is-offset-2">
+    <div class="column is-10 is-offset-1">
       <p class="title has-text-grey-dark has-text-weight-semibold has-text-centered">
         {{ recipe.title }}
         <b-tag
@@ -10,20 +10,16 @@
         </b-tag>
       </p>
       <p class="subtitle has-text-centered">
-        Chef <a class="is-text">{{ recipe.user_name }}</a>
+        Chef 
+        <router-link :to="{name: 'profile', params: {id: recipe.user_id}}">
+          {{ recipe.user_name }}
+        </router-link>
       </p>
 
       <figure class="has-text-centered">
         <img :src="recipe.image" :alt="recipe.title">
       </figure>
-      <hr>
 
-      <p class="title is-4 has-text-grey-dark">Ingredients</p>
-      <p class="has-text-justified	">{{ recipe.ingredients }}</p>
-      <hr>
-
-      <p class="title is-4 has-text-grey-dark">Steps</p>
-      <p class="has-text-justified	">{{ recipe.steps }}</p>
       <hr>
 
       <div class="columns">
@@ -40,6 +36,23 @@
           <div @click="deleteRecipe" class="button is-danger">
             Delete
           </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-8">
+          <p class="title is-4 has-text-grey-dark">Ingredients</p>
+          <p class="has-text-justified	">{{ recipe.ingredients }}</p>
+          <br>
+          <p class="title is-4 has-text-grey-dark">Steps</p>
+          <p class="has-text-justified	">{{ recipe.steps }}</p>
+        </div>
+        <div class="column">
+          <p class="title is-4 has-text-grey-dark">Times</p>
+          <u>
+            <li>Preparation time: {{ recipe.preparation_time }} hours.</li>
+            <li>Oven time: {{ recipe.oven_time }} hours</li>
+          </u>
         </div>
       </div>
     </div>
