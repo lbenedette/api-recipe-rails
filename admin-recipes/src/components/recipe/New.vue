@@ -29,10 +29,8 @@ export default {
           ...recipe
         }
       })
-      .then(response => {
-        this.$router.push('/recipes');
-      })
-      .catch(e => e);
+      .then(() => this.$router.push('/recipes'))
+      .catch(error => this.$store.commit('setErrors', error.response.data.errors));
     }
   },
 

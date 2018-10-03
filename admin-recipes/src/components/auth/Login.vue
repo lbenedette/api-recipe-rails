@@ -31,7 +31,7 @@
 import axios from "axios";
 
 export default {
-  name: "Login",
+  name: "login",
 
   methods: {
     authenticate() {
@@ -41,11 +41,11 @@ export default {
           password: this.password
         })
         .then(response => {
-          this.$store.commit("setToken", response.data.auth_token);
-          this.$store.commit("setUser", response.data.user);
+          this.$store.commit('setToken', response.data.auth_token);
+          this.$store.commit('setUser', response.data.user);
           this.$router.push('/recipes');
         })
-        .catch(e => (e));
+        .catch(error => this.$store.commit('setErrors', error.response.data.errors));
     }
   },
 

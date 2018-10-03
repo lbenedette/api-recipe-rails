@@ -58,9 +58,7 @@ export default {
       .get("http://localhost:3000/api/v1/recipes", {
         headers: { Authorization: this.$store.getters.getToken }
       })
-      .then(response => {
-        this.recipes = response.data;
-      })
+      .then(response => this.recipes = response.data)
       .catch(e => e);
   }
 };

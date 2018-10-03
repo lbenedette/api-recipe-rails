@@ -27,10 +27,8 @@ export default {
           ...recipe
         }
       })
-      .then(response => {
-        this.$router.push('/recipes/' + this.$route.params.id);
-      })
-      .catch(e => e);
+      .then(() => this.$router.push('/recipes/' + this.$route.params.id))
+      .catch(error => this.$store.commit('setErrors', error.response.data.errors));;
     }
   },
 
@@ -45,10 +43,8 @@ export default {
       .get('http://localhost:3000/api/v1/recipes/' + this.$route.params.id, {
         headers: { Authorization: this.$store.getters.getToken }
       })
-      .then(response => {
-        this.recipe = response.data;
-      })
-      .catch(e => e);
+      .then(response => this.recipe = response.data)
+      .catch(error => console.error(error));
   }
 };
 </script>

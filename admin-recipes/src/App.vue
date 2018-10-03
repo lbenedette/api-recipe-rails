@@ -34,6 +34,13 @@
     <section class="hero">
       <div class="hero-body">
         <div class="container">
+          <div class="columns">
+            <div class="column is-6 is-offset-3">
+              <b-message title="Danger" type="is-danger" v-if="getErrors" @close="close">
+                {{ getErrors }}
+              </b-message>
+            </div>
+          </div>
           <router-view></router-view>
         </div>
       </div>
@@ -49,6 +56,10 @@ export default {
     logout() {
       this.$store.commit('logout')
       this.$router.push('/login')
+    },
+
+    close() {
+      this.$store.commit('setErrors', null);
     }
   },
 
@@ -63,6 +74,10 @@ export default {
 
     userName() {
       return this.$store.getters.getUserName;
+    },
+
+    getErrors() {
+      return this.$store.getters.getErrors;
     }
   }
 }

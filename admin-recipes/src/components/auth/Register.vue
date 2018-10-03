@@ -58,10 +58,8 @@ export default {
           ...this.user
         }
       })
-        .then(response => {
-          this.$router.push("/login");
-        })
-        .catch(e => e);
+        .then(() => this.$router.push("/login"))
+        .catch(error => this.$store.commit('setErrors', error.response.data.errors));
     }
   },
 

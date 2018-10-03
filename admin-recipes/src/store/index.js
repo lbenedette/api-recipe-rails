@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     auth_token: '',
-    user: {}
+    user: {},
+    errors: ''
   },
 
   mutations: {
@@ -14,14 +15,18 @@ export default new Vuex.Store({
       state.auth_token = token;
     },
 
-    logout(state) {
-      state.auth_token = '';
-      state.user = {};
-    },
-
     setUser(state, user) {
       state.user = user;
     },
+
+    setErrors(state, errors) {
+      state.errors = errors;
+    },
+
+    logout(state) {
+      state.auth_token = '';
+      state.user = {};
+    }
   },
 
   getters: {
@@ -39,6 +44,10 @@ export default new Vuex.Store({
 
     getUserName(state) {
       return state.user.name;
+    },
+
+    getErrors(state) {
+      return state.errors;
     }
   }
 });

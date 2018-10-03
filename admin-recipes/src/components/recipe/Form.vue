@@ -17,25 +17,25 @@
           placeholder="Select a category"
           v-model="recipe.category">
             <option
-                v-for="option in [
-                  {category: 'entree'},
-                  {category: 'desert'},
-                  {category: 'apettizer'},
-                  {category: 'snack'},
-                ]"
-                :value="option.category"
-                :key="option.category">
-                {{ option.category }}
+              v-for="option in [
+                {category: 'entree'},
+                {category: 'desert'},
+                {category: 'apettizer'},
+                {category: 'snack'},
+              ]"
+              :value="option.category"
+              :key="option.category">
+              {{ option.category }}
             </option>
         </select>
       </div>
     </b-field>
 
     <b-field label="Preparation Time">
-      <b-input 
+      <b-input
         type="number"
         min="0"
-        max="200"
+        step="0.5"
         v-model="recipe.preparation_time">
       </b-input>
     </b-field>
@@ -44,20 +44,20 @@
       <b-input
         type="number"
         min="0"
-        max="200"
+        step="0.5"
         v-model="recipe.oven_time">
       </b-input>
     </b-field>
 
     <b-field label="Ingredients">
-      <b-input 
+      <b-input
         type="textarea"
         v-model="recipe.ingredients">
       </b-input>
     </b-field>
 
     <b-field label="Steps">
-      <b-input 
+      <b-input
         type="textarea"
         v-model="recipe.steps">
       </b-input>
@@ -105,10 +105,6 @@ export default {
       let self = this;
       this.$emit('formSubmit', self.recipe);
     }
-  },
-
-  data() {
-    return {}
   }
 };
 </script>
