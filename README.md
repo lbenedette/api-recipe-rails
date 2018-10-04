@@ -21,3 +21,5 @@ Assim é executado as migrations e um seed que cria 10 receitas e um usuário pa
 **email: test@test.com**
 
 **password: password**
+
+Para entrar no sistema visite [Login](http://localhost:8080/login)
