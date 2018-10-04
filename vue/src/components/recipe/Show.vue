@@ -93,7 +93,6 @@ export default {
         headers: { Authorization: this.$store.getters.getToken }
       })
       .then(response => {
-        console.log(response.data);
         this.recipe = response.data;
       })
       .catch(e => e);

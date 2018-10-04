@@ -9,8 +9,8 @@ User.create!({
   Recipe.create!({
       title: Faker::Food.dish,
       category: rand(3),
-      preparation_time: Faker::Number.decimal,
-      oven_time: Faker::Number.decimal,
+      preparation_time: 10.5,
+      oven_time: 4.5,
       ingredients: Faker::Lorem.sentence,
       steps: Faker::Lorem.sentence,
       image: "",

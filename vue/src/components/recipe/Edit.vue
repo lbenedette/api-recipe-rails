@@ -28,7 +28,7 @@ export default {
         }
       })
       .then(() => this.$router.push('/recipes/' + this.$route.params.id))
-      .catch(error => this.$store.commit('setErrors', error.response.data.errors));;
+      .catch(error => this.$store.commit('setErrors', error.response.data.errors));
     }
   },
 
@@ -44,7 +44,7 @@ export default {
         headers: { Authorization: this.$store.getters.getToken }
       })
       .then(response => this.recipe = response.data)
-      .catch(error => console.error(error));
+      .catch(error => this.$store.commit('setErrors', error.response.data.errors));
   }
 };
 </script>
